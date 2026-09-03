@@ -2,7 +2,7 @@
 ## Members: Christopher Ibarra and Salvador Rodriguez  
 ### Preferred Project Idea
 ---
-**Title:** Inventory Management System 
+**Title:** Inventory Management System  
 **Users:** Store Owners, Stock Managers  
 **Information:** Stock, supply notifications, customers  
 **Current Status:** Initial Planning  
