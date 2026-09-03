@@ -1,5 +1,5 @@
 # Group2_CSCE5350_FA26  
-## Members: Christopher Ibarra and Salvador Rodriguez  
+Members: Christopher Ibarra and Salvador Rodriguez  
 ### Preferred Project Idea
 ---
 **Title:** Inventory Management System  
