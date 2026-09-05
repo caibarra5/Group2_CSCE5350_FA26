@@ -9,7 +9,7 @@ Members: Christopher Ibarra and Salvador Rodriguez
 
 ### Alternate Project Idea
 --- 
-**Title:** Appointment Scheduler 
-**Users:** professionals, entrepreneurs, project managers, operations teams, teachers, students
-**Information:** events, dates, attendees, appointment title, appointment ID, appointment start time, appointment end time, time slots taken or vacant 
-**Current Status:** Initial Planning  
+**Title:** Appointment Scheduler<br>
+**Users:** professionals, entrepreneurs, project managers, operations teams, teachers, students<br>
+**Information:** events, dates, attendees, appointment title, appointment ID, appointment start time, appointment end time, time slots taken or vacant<br>
+**Current Status:** Initial Planning<br>
