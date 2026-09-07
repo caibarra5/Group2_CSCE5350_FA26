@@ -5,7 +5,5 @@ Members: Christopher Ibarra and Salvador Rodriguez
 **Title:** Inventory Management System  
 **Users:** Store Owners, Stock Managers  
 **Information:** Stock, supply notifications, customers  
-**Current Status:** Initial Planning  
-
-### Alternate Project Idea
-
+**Current Status:** Initial Planning<br>
+**Alternate Project Idea:**: Appointment Scheduler
