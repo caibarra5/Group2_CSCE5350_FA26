@@ -6,4 +6,4 @@ Members: Christopher Ibarra and Salvador Rodriguez
 **Users:** Store Owners, Stock Managers  
 **Information:** Stock, supply notifications, customers  
 **Current Status:** Initial Planning<br>
-**Alternate Project Idea:**: Appointment Scheduler
+**Alternate Project Idea:** Appointment Scheduler
