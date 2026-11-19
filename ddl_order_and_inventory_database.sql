@@ -1,7 +1,7 @@
 create table wholesaler (
     wholesaler_id int primary key
     , wholesaler_name varchar(100) not null
-)
+);
 
 create table purchase_order(
     order_id int primary key
@@ -12,24 +12,24 @@ create table purchase_order(
     , wholesaler_id int references wholesaler(wholesaler_id)
     , warehouse_id int references warehosue(warehouse_id)
     , amount_paid decimal(8,2)
-)
+);
 
 create table freight_carrier(
     company_id int primary key
     , company_name varchar(100)
-)
+);
 
 freight_carrier_payment(
     payment_id int primary key
     , warehouse_id int references warehouse(warehouse_id)
     , company_id int references freight_carrier(company_id)
     , amount_paid decimal(8,2)
-)
+);
 
 create table truck(
     truck_id int primary key
     , company_id int references freight_carrier(company_id)
-)
+);
 
 create table wholesaler_shipment(
     shipment_id int primary key
@@ -40,7 +40,7 @@ create table wholesaler_shipment(
     , warehouse_id int references warehouse(warehouse_id)
     , pickup_address varchar(100)
     , arrival_date date
-)
+);
 
 create table product(
     name varchar(100)
@@ -50,13 +50,13 @@ create table product(
     , retail_price decimal(7,2)
     , recall boolean
     , recall_id int
-)
+);
 
 create table wholesaler_price(
     wholesaler_id int references wholesaler(wholesaler_id)
     , product_id int references product(product_id)
     , wholesaler_price_per_unit decimal(7,2)
-)
+);
 
 create table item(
     item_id int primary key
@@ -68,7 +68,7 @@ create table item(
     , status varchar(100)
     , customer_shipment_id int references customer_shipment(shipment_id)
     , transfer_id int references transfer(transfer_id)
-)
+);
 
 create table warehouse(
     warehouse_id int primary key
@@ -79,14 +79,14 @@ create table warehouse(
     , date_lease_start date
     , date_lease_end date
     , status varchar(100)
-)
+);
 
 create table transfer(
     warehouse_id int references warehouse(warehouse_id)
     , shop_id int references shop(shop_id)
     , date_of_transfer date
     , transfer_id int primary key
-)
+);
 
 create table shop(
     shop_id int primary key
@@ -96,7 +96,7 @@ create table shop(
     , building_lease_start_date date
     , building_lease_end_date date
     , status varchar(100)
-)
+);
 
 create table customer_visit(
     shop_id int references shop(shop_id)
@@ -104,17 +104,17 @@ create table customer_visit(
     , date_and_time_visit date
     , customer_order_id references customer_order(order_id)
     , primary key (shop_id, customer_id, date_and_time_visit)
-)
+);
 
 create table small_parcel_carrier(
     company_name varchar(100)
     , company_id int primary key
-)
+);
 
 create table small_parcel_vehicle(
     vehicle_id int primary key
     , company_id int references small_parcel_carrier(company_id)
-)
+);
 
 create table customer_shipment(
     shipment_id int primary key
@@ -122,7 +122,7 @@ create table customer_shipment(
     , carrier_vehicle_id int references small_parcel_vehicle(vehicle_id)
     , warehouse_id int references warehouse(warehouse_id)
     , customer_id int references customer(customer_id)
-)
+);
 
 create table customer(
     name varchar(100)
@@ -130,7 +130,7 @@ create table customer(
     , customer_type varchar(100)
     , address varchar(100)
     , apt_number int
-)
+);
 
 create table customer_order(
     order_id int primary key
@@ -139,7 +139,7 @@ create table customer_order(
     , status varchar(100)
     , warehouse_id int references warehouse(warehouse_id)
     , customer_id int references customer(customer_id)
-)
+);
 
 
 
