@@ -6,6 +6,7 @@ create table wholesaler (
 create table purchase_order(
     order_id int primary key
     , wholesaler_id int not null
+    , date_order_placed date not null
     , delivery_date date
     , status varchar(50) not null
              check (status in ('sent', 'in transit', 'arrived', 'aborted', 'failed') )
@@ -56,6 +57,7 @@ create table wholesaler_price(
     wholesaler_id int references wholesaler(wholesaler_id)
     , product_id int references product(product_id)
     , wholesaler_price_per_unit decimal(7,2)
+    , primary key (wholesaler_id, product_id)
 );
 
 create table item(
