@@ -52,6 +52,7 @@ create table wholesaler_shipment(
     , pickup_address varchar(100) not null
     , arrival_date date
     , constraint uq_order_id UNIQUE (order_id)
+    , truck_id int not null references truck(truck_id) -- very important, forgot it.
 );
 
 create table product(
