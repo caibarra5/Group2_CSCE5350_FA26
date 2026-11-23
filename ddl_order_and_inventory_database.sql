@@ -51,6 +51,7 @@ create table wholesaler_shipment(
     , warehouse_id int references warehouse(warehouse_id)
     , pickup_address varchar(100)
     , arrival_date date
+    , constraint uq_order_id UNIQUE (order_id)
 );
 
 create table product(
@@ -98,8 +99,19 @@ create table small_parcel_vehicle(
     , company_id int references small_parcel_carrier(company_id)
 );
 
+create table customer_order(
+    order_id int primary key
+    , date_order_placed date
+    , delivery_date date
+    , status varchar(100)
+    , warehouse_id int references warehouse(warehouse_id)
+    , customer_id int references customer(customer_id)
+);
+
 create table customer_shipment(
     shipment_id int primary key
+    , customer_order_id int references customer_order(order_id)
+    , constraint uq_customer_order_id UNIQUE (customer_order_id)
     , customer_id int references customer(customer_id) 
     , carrier_vehicle_id int references small_parcel_vehicle(vehicle_id)
     , warehouse_id int references warehouse(warehouse_id)
@@ -124,15 +136,6 @@ create table item(
     , transfer_id int references transfer(transfer_id)
 );
 
-create table customer_order(
-    order_id int primary key
-    , date_order_placed date
-    , delivery_date date
-    , status varchar(100)
-    , warehouse_id int references warehouse(warehouse_id)
-    , customer_id int references customer(customer_id)
-);
-
 create table customer_visit(
     shop_id int references shop(shop_id)
     , customer_id int references customer(customer_id)
@@ -140,3 +143,4 @@ create table customer_visit(
     , customer_order_id int references customer_order(order_id)
     , primary key (shop_id, customer_id, date_and_time_visit)
 );
+
