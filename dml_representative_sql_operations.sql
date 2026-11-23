@@ -121,8 +121,6 @@ insert into customer (
 values (
     101, 'alex smith', 'individual', '123 main street', null
 );
--- replace 'individual' if your customer_type constraint
--- uses a different value.
 
 
 -- 2. insert new vehicles belonging to those companies.
