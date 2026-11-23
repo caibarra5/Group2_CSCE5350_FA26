@@ -23,10 +23,13 @@ insert into truck (truck_id, company_id) values
 (1, 1),
 (2, 2);
 
-insert into wholesaler_shipment (shipment_id, order_id, status, wholesaler_id, warehouse_id, pickup_address, arrival_date) values
-(1, 1, 'arrived', 1, 1, '10 wholesaler1 road', '2026-10-05'),
-(2, 2, 'arrived', 2, 2, '20 wholesaler2 road', '2026-10-08'),
-(3, 3, 'arrived', 1, 2, '10 wholesaler1 road', '2026-10-15');
+insert into wholesaler_shipment (
+    shipment_id, order_id, status, wholesaler_id,
+    warehouse_id, pickup_address, arrival_date, truck_id
+) values
+(1, 1, 'arrived', 1, 1, '10 wholesaler1 road', '2026-10-05', 1),
+(2, 2, 'arrived', 2, 2, '20 wholesaler2 road', '2026-10-08', 2),
+(3, 3, 'arrived', 1, 2, '10 wholesaler1 road', '2026-10-15', 1);
 
 insert into product (name, product_id, category, sub_category, retail_price, recall, recall_id) values
 ('product1', 1, 'electronics', 'audio', 25.00, false, null),
