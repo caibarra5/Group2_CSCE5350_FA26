@@ -140,3 +140,84 @@ begin;
 
     -- undo the test inserts and updates so they do not remain in the database
     rollback;
+
+    
+-- edge case 1: move an item from a warehouse to a shop
+begin;
+
+  -- create a transfer from warehouse 1 to shop 1
+  insert into transfer (
+      warehouse_id, shop_id, date_of_transfer, transfer_id
+  ) values (
+      1, 1, '2026-11-01', 3
+  );
+  
+  -- move item 8 from warehouse 1 to shop 1
+  update item
+  set warehouse_id = null,
+      shop_id = 1,
+      status = 'in shop',
+      transfer_id = 3
+  where item_id = 8;
+
+  update item
+  set status = 'lost'
+  where item_id = 8;
+  
+  -- check the item's  location and transfer
+  select
+      i.item_id,
+      i.status,
+      i.warehouse_id,
+      i.shop_id,
+      t.transfer_id,
+      t.date_of_transfer
+  from item as i
+  join transfer as t
+      on t.transfer_id = i.transfer_id
+  where i.item_id = 8;
+  
+  rollback;
+  
+  
+  -- edge case 2: record one item as lost in transit from a wholesaler
+  begin;
+  
+  -- create a purchase order and shipment that are still in transit
+  insert into purchase_order (
+      order_id, date_order_placed, status, wholesaler_id, warehouse_id
+  ) values (
+      4, '2026-11-02', 'in transit', 1, 1
+  );
+  
+  insert into wholesaler_shipment (
+      shipment_id, order_id, status, wholesaler_id,
+      warehouse_id, pickup_address, truck_id
+  ) values (
+      4, 4, 'in transit', 1, 1, '10 wholesaler1 road', 1
+  );
+  
+  -- record item 16 as lost before it reaches the warehouse
+  insert into item (
+      item_id, product_id, purchase_order_id, warehouse_id, status
+  ) values (
+      16, 1, 4, null, 'lost in transit'
+  );
+  
+  -- verify the item is recorded as lost while its order and shipment are in transit
+  select
+      i.item_id,
+      p.name as product_name,
+      i.status as item_status,
+      po.status as purchase_order_status,
+      ws.status as shipment_status
+  from item as i
+  join product as p
+      on p.product_id = i.product_id
+  join purchase_order as po
+      on po.order_id = i.purchase_order_id
+  join wholesaler_shipment as ws
+      on ws.order_id = po.order_id
+  where i.item_id = 16;
+  
+  rollback;
